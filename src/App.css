@@ -1,38 +1,124 @@
+/* App */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
+  display: flex;
+  justify-content: center;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-image: linear-gradient( 109.6deg,  rgba(61,245,167,1) 11.2%, rgba(9,111,224,1) 91.1% );
   min-height: 100vh;
+}
+
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width: 25% ;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  margin: 0.5em;
+  color: #222;
+  font-weight: 300;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Stat Cards */
+.stat-card {
+  padding: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: rgba(255, 255, 255, 0.724);    display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  border-radius: 0.3em;
+}
+
+.stat-value-green {
+  color: green;
+}
+
+.stat-value-red {
+  color: red;
+}
+
+.stat-heading {
+  font-weight: 300;
+  margin-bottom: 0.5em;
+}
+
+/* form */
+
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.transaction-form input {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.4em;
+  background-color: rgba(255, 255, 255, 0.724);
+  border: none;
+  border-radius: 0.3em;
+  font-size: small;
+}
+
+.button-primary {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  font-weight: bold;
+  color: green;
+  background-color: rgba(255, 255, 255, 0.724);
+  border: none;
+  border-radius: 0.3em;
+}
+
+.button-primary:hover {
+  background-color: rgba(218, 254, 224, 0.724);
+  transition:ease 0.4s;
+}
+
+/* History */
+.transaction-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: rgba(255, 255, 255, 0.724);
+  border-radius: 0.3em;
+}
+
+.item-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+  ;
+}
+
+.square-green {
+  width: 5px;
+  height: 5px;
+  padding: 5px;
+  background-color: green;
+  border-radius: 0.2em;
+  margin-right: 0.5em;
+}
+.square-red {
+  width: 5px;
+  height: 5px;
+  padding: 5px;
+  background-color: red;
+  border-radius: 0.2em;
+  margin-right: 0.5em;
 }
