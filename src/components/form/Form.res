@@ -13,12 +13,7 @@ let make = (~userHistory, ~setUserHistory, ~setExpense, ~setIncome, ~income, ~ex
         },
       ])
     )
-    // Js.log(income +. newAmount)
-    if newAmount >= 0.0 {
-      setIncome(_ => income +. newAmount)
-    } else {
-      setExpense(_ => expense +. newAmount)
-    }
+    newAmount >= 0.0 ? setIncome(_ => income +. newAmount) : setExpense(_ => expense +. newAmount)
   }
 
   <>
