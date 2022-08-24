@@ -2,7 +2,7 @@
 
 A Basic expense tracker created in Rescript. 
 
-![Functional- Requirements](https://)
+![Screenshot](https://raw.githubusercontent.com/sushil-b/expense-tracker/dev/.github/assets/demo.png?token=GHSAT0AAAAAABX3GBXWZJPX5WTKN4OBSJ7WYYF2T7Q)
 
 ### **Features**
 
