@@ -1,14 +1,19 @@
 @react.component
-let make = () => {
+let make = (~userHistory: array<UserHistory.userHistory>) => {
   <>
     <div className="history">
       <h2 className="heading"> {React.string("History")} </h2>
-      <div className="transaction-row">
-        <div className="item-name">
-          <div className="square-green" /> <p> {React.string("Coffee")} </p>
-        </div>
-        <p> {React.string("-40")} </p>
-      </div>
+      {React.array(
+        Belt.Array.map(userHistory, row => {
+          <div className="transaction-row">
+            <div className="item-name">
+              <div className={row["amount"] >= 0.0 ? "square-green" : "square-red"} />
+              <p> {React.string(row["comment"])} </p>
+            </div>
+            <p> {React.string(`$ ${Belt.Float.toString(row["amount"])}`)} </p>
+          </div>
+        }),
+      )}
     </div>
   </>
 }
