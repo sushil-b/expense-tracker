@@ -2,14 +2,14 @@
 let styles: {..} = cssModule["default"]
 
 @react.component
-let make = (~transaction: array<Transaction.t>, ~setTransaction) => {
+let make = (~transactions: array<Transaction.t>, ~setTransactions) => {
   let handleSubmit = event => {
     ReactEvent.Form.preventDefault(event)
     let newComment: string = ReactEvent.Form.target(event)["comment"]["value"]
     let newAmount: float = float_of_string(ReactEvent.Form.target(event)["amount"]["value"])
 
-    setTransaction(_ =>
-      transaction->Js.Array2.concat([
+    setTransactions(_ =>
+      transactions->Js.Array2.concat([
         {
           "comment": newComment,
           "amount": newAmount,

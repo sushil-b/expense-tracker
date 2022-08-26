@@ -2,18 +2,18 @@
 
 @react.component
 let make = () => {
-  let (transaction, setTransaction) = React.useState(_ => [
+  let (transactions, setTransactions) = React.useState(_ => [
     {"comment": "Start adding expenses to show here", "amount": 0.0},
   ])
 
-  let balance = Belt.Array.reduce(transaction, 0.0, (previousBalance, currentBalance) => {
+  let balance = Belt.Array.reduce(transactions, 0.0, (previousBalance, currentBalance) => {
     previousBalance +. currentBalance["amount"]
   })
-  let expense = Belt.Array.reduce(transaction, 0.0, (previousExpense, currentExpense) => {
+  let expense = Belt.Array.reduce(transactions, 0.0, (previousExpense, currentExpense) => {
     currentExpense["amount"] < 0.0 ? previousExpense +. currentExpense["amount"] : previousExpense
   })
 
-  let income = Belt.Array.reduce(transaction, 0.0, (previousIncome, currentIncome) => {
+  let income = Belt.Array.reduce(transactions, 0.0, (previousIncome, currentIncome) => {
     currentIncome["amount"] > 0.0 ? previousIncome +. currentIncome["amount"] : previousIncome
   })
 
@@ -26,8 +26,8 @@ let make = () => {
           <Amount heading={"Total Income"} value={income} />
           <Amount heading={"Total Expense"} value={expense} />
         </div>
-        <AddTransactionForm transaction setTransaction />
-        <History transaction />
+        <AddTransactionForm transactions setTransactions />
+        <History transactions />
       </div>
     </div>
   </>
