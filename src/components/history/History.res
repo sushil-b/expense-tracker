@@ -1,13 +1,13 @@
 @react.component
-let make = (~userHistory: array<Transaction.t>) => {
+let make = (~transactions: array<Transaction.t>) => {
   <>
     <div>
       <h2 className="heading"> {React.string("History")} </h2>
-      {React.array(
-        Belt.Array.map(userHistory, row => {
-          <TransactionCmp amount={row["amount"]} comment={row["comment"]} />
-        }),
-      )}
+      {transactions
+      ->Belt.Array.map(transaction =>
+        <TransactionCmp amount={transaction["amount"]} comment={transaction["comment"]} />
+      )
+      ->React.array}
     </div>
   </>
 }

@@ -1,21 +1,19 @@
 %%raw(`import './App.css';`)
 
-let initialUserHistory: array<Transaction.t> = [
-  {"comment": "Start adding expenses to show here", "amount": 0.0},
-]
-
 @react.component
 let make = () => {
-  let (userHistory, setUserHistory) = React.useState(_ => initialUserHistory)
+  let (transaction, setTransaction) = React.useState(_ => [
+    {"comment": "Start adding expenses to show here", "amount": 0.0},
+  ])
 
-  let balance = Belt.Array.reduce(userHistory, 0.0, (previousBalance, currentBalance) => {
+  let balance = Belt.Array.reduce(transaction, 0.0, (previousBalance, currentBalance) => {
     previousBalance +. currentBalance["amount"]
   })
-  let expense = Belt.Array.reduce(userHistory, 0.0, (previousExpense, currentExpense) => {
+  let expense = Belt.Array.reduce(transaction, 0.0, (previousExpense, currentExpense) => {
     currentExpense["amount"] < 0.0 ? previousExpense +. currentExpense["amount"] : previousExpense
   })
 
-  let income = Belt.Array.reduce(userHistory, 0.0, (previousIncome, currentIncome) => {
+  let income = Belt.Array.reduce(transaction, 0.0, (previousIncome, currentIncome) => {
     currentIncome["amount"] > 0.0 ? previousIncome +. currentIncome["amount"] : previousIncome
   })
 
@@ -28,8 +26,8 @@ let make = () => {
           <Amount heading={"Total Income"} value={income} />
           <Amount heading={"Total Expense"} value={expense} />
         </div>
-        <AddTransactionForm userHistory setUserHistory />
-        <History userHistory />
+        <AddTransactionForm transaction setTransaction />
+        <History transaction />
       </div>
     </div>
   </>
