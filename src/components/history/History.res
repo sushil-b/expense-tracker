@@ -1,11 +1,11 @@
 @react.component
-let make = (~userHistory: array<UserHistory.userHistory>) => {
+let make = (~userHistory: array<Transaction.t>) => {
   <>
-    <div className="history">
+    <div>
       <h2 className="heading"> {React.string("History")} </h2>
       {React.array(
         Belt.Array.map(userHistory, row => {
-          <TableRow amount={row["amount"]} comment={row["comment"]} />
+          <TransactionCmp amount={row["amount"]} comment={row["comment"]} />
         }),
       )}
     </div>

@@ -1,3 +1,6 @@
+@module external cssModule: {..} = "../styles/addTransactionForm.module.css"
+let styles: {..} = cssModule["default"]
+
 @react.component
 let make = (~userHistory, ~setUserHistory, ~setExpense, ~setIncome, ~income, ~expense) => {
   let handleSubmit = event => {
@@ -18,11 +21,13 @@ let make = (~userHistory, ~setUserHistory, ~setExpense, ~setIncome, ~income, ~ex
 
   <>
     <div>
-      <form className="transaction-form" onSubmit={handleSubmit}>
+      <form className={styles["transaction-form"]} onSubmit={handleSubmit}>
         <h2 className="heading"> {React.string("Add new transaction")} </h2>
         <input type_="number" step={0.01} name="amount" placeholder="Enter a value" required=true />
         <input type_="text" name="comment" placeholder="Enter a comment" required=true />
-        <button className="button-primary"> {React.string("Add transaction")} </button>
+        <button className={styles["add-transaction-button"]}>
+          {React.string("Add transaction")}
+        </button>
       </form>
     </div>
   </>
