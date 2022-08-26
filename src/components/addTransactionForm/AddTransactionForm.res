@@ -2,7 +2,7 @@
 let styles: {..} = cssModule["default"]
 
 @react.component
-let make = (~userHistory, ~setUserHistory, ~setExpense, ~setIncome, ~income, ~expense) => {
+let make = (~userHistory, ~setUserHistory) => {
   let handleSubmit = event => {
     ReactEvent.Form.preventDefault(event)
     let newComment: string = ReactEvent.Form.target(event)["comment"]["value"]
@@ -16,7 +16,6 @@ let make = (~userHistory, ~setUserHistory, ~setExpense, ~setIncome, ~income, ~ex
         },
       ])
     )
-    newAmount >= 0.0 ? setIncome(_ => income +. newAmount) : setExpense(_ => expense +. newAmount)
   }
 
   <>

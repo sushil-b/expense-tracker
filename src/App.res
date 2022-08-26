@@ -7,14 +7,17 @@ let initialUserHistory: array<Transaction.t> = [
 @react.component
 let make = () => {
   let (userHistory, setUserHistory) = React.useState(_ => initialUserHistory)
-  let (balance, setBalance) = React.useState(_ => 0.0)
-  let (expense, setExpense) = React.useState(_ => 0.0)
-  let (income, setIncome) = React.useState(_ => 0.0)
 
-  React.useEffect2(() => {
-    setBalance(_ => income +. expense)
-    None
-  }, (income, expense))
+  let balance = Belt.Array.reduce(userHistory, 0.0, (previousBalance, currentBalance) => {
+    previousBalance +. currentBalance["amount"]
+  })
+  let expense = Belt.Array.reduce(userHistory, 0.0, (previousExpense, currentExpense) => {
+    currentExpense["amount"] < 0.0 ? previousExpense +. currentExpense["amount"] : previousExpense
+  })
+
+  let income = Belt.Array.reduce(userHistory, 0.0, (previousIncome, currentIncome) => {
+    currentIncome["amount"] > 0.0 ? previousIncome +. currentIncome["amount"] : previousIncome
+  })
 
   <>
     <div className="App">
@@ -25,7 +28,7 @@ let make = () => {
           <Amount heading={"Total Income"} value={income} />
           <Amount heading={"Total Expense"} value={expense} />
         </div>
-        <AddTransactionForm userHistory setUserHistory expense setExpense income setIncome />
+        <AddTransactionForm userHistory setUserHistory />
         <History userHistory />
       </div>
     </div>
